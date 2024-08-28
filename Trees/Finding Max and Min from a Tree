@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<limits.h>
+
+struct node{
+    int data;
+    struct node *left;
+    struct node *right;
+};
+
+struct node *createnode(int data)
+{
+    struct node *n = (struct node*)malloc(sizeof(struct node));
+    n->data  = data;
+    n->left  = NULL;
+    n->right = NULL;
+    return n;
+}
+
+int FindMin(struct node *root)
+{
+    int root_val,left,right,Min = INT_MAX;
+    if(root!=NULL)
+    {
+        root_val = root->data;
+        left  = FindMin(root->left);
+        right = FindMin(root->right);
+        if(left<right)
+        {
+            Min = left;
+        }
+        else
+        {
+            Min = right;
+        }
+        if(root_val<Min)
+        {
+            Min = root_val;
+        }
+    }
+    return Min;
+}
+
+int FindMax(struct node *root)
+{
+    int root_val,left,right,Max = INT_MIN;
+    if(root!=NULL)
+    {
+        root_val = root->data;
+        left  = FindMax(root->left);
+        right = FindMax(root->right);
+        if(left>right)
+        {
+            Max = left;
+        }
+        else
+        {
+            Max = right;
+        }
+        if(root_val>Min)
+        {
+            Max = root_val;
+        }
+    }
+    return Max;
+}
+
+int main()
+{
+    struct node *p  = createnode(4);
+    struct node *p1 = createnode(3);
+    struct node *p2 = createnode(5);
+    struct node *p3 = createnode(20);
+    struct node *p4 = createnode(0);
+    struct node *p5 = createnode(1);
+    struct node *p6 = createnode(9);
+    
+    p->left   = p1;
+    p->right  = p2;
+    p1->left  = p3;
+    p1->right = p4;
+    p2->left  = p5;
+    p2->right = p6;
+    
+    printf("-----------------------------------\n");
+    printf("FINDING MAX ELEMENST FROM THE TREE:\n");
+    int Max_val = FindMax(p);
+    printf("%d",Max_val);
+    printf("\n-----------------------------------");
+
+    printf("-----------------------------------\n");
+    printf("FINDING MAX ELEMENST FROM THE TREE:\n");
+    int Min_val = FindMin(p);
+    printf("%d",Min_val);
+    printf("\n-----------------------------------");
+}
