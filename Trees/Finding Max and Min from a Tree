@@ -57,7 +57,7 @@ int FindMax(struct node *root)
         {
             Max = right;
         }
-        if(root_val>Min)
+        if(root_val>Max)
         {
             Max = root_val;
         }
@@ -86,10 +86,10 @@ int main()
     printf("FINDING MAX ELEMENST FROM THE TREE:\n");
     int Max_val = FindMax(p);
     printf("%d",Max_val);
-    printf("\n-----------------------------------");
+    printf("\n-----------------------------------\n");
 
     printf("-----------------------------------\n");
-    printf("FINDING MAX ELEMENST FROM THE TREE:\n");
+    printf("FINDING MIN ELEMENST FROM THE TREE:\n");
     int Min_val = FindMin(p);
     printf("%d",Min_val);
     printf("\n-----------------------------------");
